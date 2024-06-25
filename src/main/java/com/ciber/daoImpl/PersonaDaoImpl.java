@@ -101,10 +101,12 @@ public class PersonaDaoImpl implements IPersonaDao {
 	@Override
 	public List<PersonaDto> obtenerPersonasUsuario() {
 
-		String sql = " SELECT " + "    p.per_codigo, " + "    p.per_nombre, " + "    p.per_apellido, "
-				+ "    p.per_email, " + "    u.ust_codigo, " + "    COALESCE(u.usu_estado, 0) AS usu_estado " + "FROM "
-				+ "    principal.persona p " + "LEFT JOIN " + "    principal.usuario u " + "ON "
-				+ "    p.per_codigo = u.per_codigo " + "WHERE " + "    p.per_estado = 1; ";
+		String sql = "SELECT p.per_codigo, p.per_nombre, p.per_apellido, p.per_email, p.per_pais_residencia, p.per_fecha_registro, "
+				+ "COUNT(CASE WHEN u.usu_estado = 1 THEN 1 ELSE NULL END) AS perfiles FROM principal.persona p "
+				+ "LEFT JOIN principal.usuario u ON p.per_codigo = u.per_codigo "
+				+ "WHERE p.per_estado = 1 "
+				+ "GROUP BY p.per_codigo, p.per_nombre, p.per_apellido, p.per_email, p.per_pais_residencia, p.per_fecha_registro "
+				+ "ORDER BY perfiles desc;";
 
 		return jdbcTemplate.query(sql, new PersonaDtoSetExtractor());
 	}

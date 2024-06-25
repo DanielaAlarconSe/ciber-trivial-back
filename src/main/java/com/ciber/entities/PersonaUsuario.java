@@ -13,15 +13,11 @@ public class PersonaUsuario  implements Serializable {
 	
 	private String identificacion;
 	
-	private TipoIdentificacion tipoId;
-	
 	private String libretaMilitar;
 
 	private String nombre;
 
 	private String apellido;
-	
-	private SexoBiologico sexoBiologico;
 	
 	private int lugarExpedición;
 	
