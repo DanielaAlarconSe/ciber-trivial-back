@@ -42,8 +42,8 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 	@Override
 	public int registrarUsuario(UsuarioDto usuario) {
 
-		String sql = " INSERT INTO principal.usuario (per_codigo  , usu_nombre  , uwd2 , ust_codigo) "
-				+ " VALUES( ?, ?, ?, ? ) ";
+		String sql = "INSERT INTO principal.usuario (per_codigo  , usu_nombre  , uwd2 , ust_codigo) "
+				+ "VALUES( ?, ?, ?, ? ) ";
 
 		int result = jdbcTemplateEjecucion.update(sql,
 				new Object[] { usuario.getCodigo(), usuario.getUsuario(), usuario.getContrasena(), usuario.getTipo() });

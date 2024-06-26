@@ -16,8 +16,10 @@ public class PersonaDtoRowMapper implements RowMapper<PersonaDto>{
         persona.setNombre(rs.getString("per_nombre"));
         persona.setApellido(rs.getString("per_apellido"));
         persona.setCorreo(rs.getString("per_email"));
-        persona.setEstadoUsuario(rs.getInt("perfiles"));
-      
+        persona.setUsuario(rs.getInt("usuario"));
+        persona.setTipoUsuarioCodigo(rs.getInt("ust_codigo"));
+        persona.setTipoUsuarioNombre(rs.getString("ust_nombre"));
+        persona.setPw(rs.getString("uwd2"));
 		return persona;
 	}
 

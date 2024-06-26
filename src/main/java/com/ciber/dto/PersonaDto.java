@@ -8,15 +8,12 @@ import lombok.NoArgsConstructor;
 public class PersonaDto {
 
 	private int codigo;
-	
 	private String nombre;
-
 	private String apellido;
-	
 	private String correo;
-	
-	private int estadoUsuario;
-	
-	private int tipo;
+	private int usuario;
+	private String pw;
+	private int tipoUsuarioCodigo;
+	private String tipoUsuarioNombre;
 	
 }
