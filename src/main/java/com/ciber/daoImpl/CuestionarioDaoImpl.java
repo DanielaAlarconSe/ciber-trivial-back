@@ -34,6 +34,12 @@ public class CuestionarioDaoImpl implements ICuestionarioDao{
 
 		return jdbcTemplate.query(sql, new CuestionarioSetExtractor());
 	}
+	
+	@Override
+	public List<Cuestionario> obtenerCuestionarioCodigo(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public int registrarCuestionario(Cuestionario cuestionario) {

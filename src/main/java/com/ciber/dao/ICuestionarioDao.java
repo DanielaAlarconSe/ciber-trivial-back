@@ -7,6 +7,8 @@ import com.ciber.entities.Cuestionario;
 public interface ICuestionarioDao {
 	
 	public List<Cuestionario> obtenerCuestionarios();
+	
+	public List<Cuestionario> obtenerCuestionarioCodigo(int codigo);
 
 	public int registrarCuestionario(Cuestionario cuestionario);
 
