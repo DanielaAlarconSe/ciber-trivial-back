@@ -41,8 +41,8 @@ public class PreguntaRespuestaDaoImpl implements IPreguntaRespuestaDao {
 	public int registrarPreguntaRespuesta(PreguntaRespuesta preguntaRespuesta) {
 		
 		String sql = "INSERT INTO principal.pregunta_respuesta "
-				+ "(pre_codigo, reo_codigo, ret_codigo) "
-				+ "VALUES(?, ?, ?);";
+				+ "(pre_codigo, reo_codigo) "
+				+ "VALUES(?, ?);";
 
 		int result = jdbcTemplateEjecucion.update(sql,
 				new Object[] { preguntaRespuesta.getPreguntaCodigo(), preguntaRespuesta.getRespuestaOpcionCodigo()});
@@ -68,7 +68,7 @@ public class PreguntaRespuestaDaoImpl implements IPreguntaRespuestaDao {
 	public int actualizarPreguntaRespuesta(PreguntaRespuesta preguntaRespuesta) {
 		
 		String sql = "UPDATE principal.pregunta_respuesta "
-				+ "SET pre_codigo = ?, reo_codigo = ?, ret_codigo = ?, prr_estado = ? "
+				+ "SET pre_codigo = ?, reo_codigo = ?, prr_estado = ? "
 				+ "WHERE prr_codigo = ?;";
 
 		int result = jdbcTemplateEjecucion.update(sql,

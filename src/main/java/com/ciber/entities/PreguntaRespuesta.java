@@ -14,6 +14,7 @@ public class PreguntaRespuesta {
 	private String preguntaNombre;
 	private int respuestaOpcionCodigo;
 	private String respuestaOpcionNombre;
+	private float puntuacion;
 	private int estado;
 
 }

@@ -20,6 +20,7 @@ public class PreguntaRespuestaRowMapper implements RowMapper<PreguntaRespuesta>{
 		preguntaRespuesta.setPreguntaNombre(rs.getString("pre_nombre"));
 		preguntaRespuesta.setRespuestaOpcionCodigo(rs.getInt("reo_codigo"));
 		preguntaRespuesta.setRespuestaOpcionNombre(rs.getString("reo_nombre"));
+		preguntaRespuesta.setPuntuacion(rs.getFloat("reo_puntuacion"));
 		preguntaRespuesta.setEstado(rs.getInt("prr_estado"));
 		return preguntaRespuesta;
 		
