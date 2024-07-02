@@ -8,8 +8,12 @@ import lombok.NoArgsConstructor;
 public class PreguntaRespuesta {
 	
 	private int codigo;
+	private int cuestionarioCodigo;
+	private String cuestionarioNombre;
 	private int preguntaCodigo;
-	private int respuestaOpcionCodigo; 
+	private String preguntaNombre;
+	private int respuestaOpcionCodigo;
+	private String respuestaOpcionNombre;
 	private int estado;
 
 }

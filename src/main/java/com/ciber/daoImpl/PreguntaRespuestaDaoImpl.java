@@ -29,6 +29,7 @@ public class PreguntaRespuestaDaoImpl implements IPreguntaRespuestaDao {
 		String sql = "select * from principal.pregunta_respuesta pr "
 				+ "inner join principal.pregunta p on pr.pre_codigo = p.pre_codigo "
 				+ "inner join principal.respuesta_opcion ro on pr.reo_codigo = ro.reo_codigo "
+				+ "inner join principal.cuestionario c on p.cue_codigo = c.cue_codigo "
 				+ "where pr.pre_codigo = " + codigo + " and pr.prr_estado = 1 "
 				+ "order by pr.prr_codigo asc";
 
