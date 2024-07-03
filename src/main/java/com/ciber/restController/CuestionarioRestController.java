@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,16 @@ public class CuestionarioRestController {
 	@GetMapping(path = "obtener-cuestionarios")
 	public List<Cuestionario> obtenerCuestionarios() {
 		return service.obtenerCuestionarios();
+	}
+	
+	@GetMapping(path = "obtener-cuestionario/{codigo}")
+	public List<Cuestionario> obtenerCuestionarioCodigo(@PathVariable Integer codigo) {
+		return service.obtenerCuestionarioCodigo(codigo);
+	}
+	
+	@GetMapping(path = "obtener-cuestionarios-curso/{codigo}")
+	public List<Cuestionario> obtenerCuestionariosCurso(@PathVariable Integer codigo) {
+		return service.obtenerCuestionariosCurso(codigo);
 	}
 
 	@PostMapping(path = "registrar-cuestionario")

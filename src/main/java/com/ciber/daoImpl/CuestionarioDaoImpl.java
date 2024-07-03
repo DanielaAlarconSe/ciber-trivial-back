@@ -37,8 +37,24 @@ public class CuestionarioDaoImpl implements ICuestionarioDao{
 	
 	@Override
 	public List<Cuestionario> obtenerCuestionarioCodigo(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "select * from principal.cuestionario c "
+				+ "inner join principal.curso cu on c.cur_codigo = cu.cur_codigo "
+				+ "where c.cue_codigo = " + codigo + " and c.cue_estado = 1";
+
+		return jdbcTemplate.query(sql, new CuestionarioSetExtractor());
+		
+	}
+	
+	@Override
+	public List<Cuestionario> obtenerCuestionariosCurso(int codigo) {
+		
+		String sql = "select * from principal.cuestionario c "
+				+ "inner join principal.curso cu on c.cur_codigo = cu.cur_codigo "
+				+ "where c.cur_codigo = " + codigo + " and c.cue_estado = 1";
+
+		return jdbcTemplate.query(sql, new CuestionarioSetExtractor());
+		
 	}
 
 	@Override
