@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class RespuestaCuestionario {
 	
 	private int codigo;
-	private int estudianteCodigo;
+	private String estudianteNombre;
 	private int cuestionarioCodigo;
 	private Date fechaRegistro; 
 	private int calificacionTotal;

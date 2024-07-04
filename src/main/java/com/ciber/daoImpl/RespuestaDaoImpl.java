@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ciber.dao.IRespuestaDao;
+import com.ciber.entities.Respuesta;
+import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
 import com.ciber.entities.RespuestaTipo;
 import com.ciber.resultSetExtractor.RespuestaOpcionSetExtractor;
@@ -44,6 +46,15 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 
 		return jdbcTemplate.query(sql, new RespuestaTipoSetExtractor());
 		
+	}
+	
+	@Override
+	public int obtenerUltimoRegistro() {
+		
+	    String sql = "select rc.rec_codigo from principal.respuesta_cuestionario rc order by rc.rec_codigo desc limit 1;";
+	    
+	    return jdbcTemplate.queryForObject(sql, Integer.class);
+	    
 	}
 
 	@Override
@@ -92,6 +103,62 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 			parameter.addValue("3", respuestaOpcion.getPuntuacion());
 			parameter.addValue("4", respuestaOpcion.getEstado());
 			parameter.addValue("5", respuestaOpcion.getCodigo());
+
+			return result;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return 0;
+
+		}
+		
+	}
+
+	@Override
+	public int registrarRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario) {
+		
+		String sql = "INSERT INTO principal.respuesta_cuestionario "
+				+ "(rec_estudiante_nombre, cue_codigo, rec_calificacion_total) "
+				+ "VALUES(?, ?, ?);";
+
+		int result = jdbcTemplateEjecucion.update(sql,
+				new Object[] { respuestaCuestionario.getEstudianteNombre(), respuestaCuestionario.getCuestionarioCodigo(), respuestaCuestionario.getCalificacionTotal()});
+
+		try {
+
+			MapSqlParameterSource parameter = new MapSqlParameterSource();
+			parameter.addValue("1", respuestaCuestionario.getEstudianteNombre());
+			parameter.addValue("2", respuestaCuestionario.getCuestionarioCodigo());
+			parameter.addValue("3", respuestaCuestionario.getCalificacionTotal());
+
+			return result;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return 0;
+
+		}
+		
+	}
+
+	@Override
+	public int registrarRespuestaTrivia(Respuesta respuesta) {
+		
+		String sql = "INSERT INTO principal.respuesta "
+				+ "(rec_codigo, prr_codigo, pre_codigo) "
+				+ "VALUES(?, ?, ?);";
+
+		int result = jdbcTemplateEjecucion.update(sql,
+				new Object[] { respuesta.getRespuestaCuestionarioCodigo(), respuesta.getPreguntaRespuestaCodigo(), respuesta.getPreguntaCodigo()});
+
+		try {
+
+			MapSqlParameterSource parameter = new MapSqlParameterSource();
+			parameter.addValue("1", respuesta.getRespuestaCuestionarioCodigo());
+			parameter.addValue("2", respuesta.getPreguntaRespuestaCodigo());
+			parameter.addValue("3", respuesta.getPreguntaCodigo());
 
 			return result;
 
