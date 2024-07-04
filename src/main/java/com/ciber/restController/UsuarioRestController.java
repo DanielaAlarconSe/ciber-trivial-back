@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciber.dto.UsuarioDto;
-import com.ciber.entities.Persona;
 import com.ciber.service.IUsuarioService;
 
 @RestController
