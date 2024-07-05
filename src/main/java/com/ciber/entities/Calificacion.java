@@ -1,6 +1,6 @@
 package com.ciber.entities;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +16,6 @@ public class Calificacion {
 	private Integer cuestionarioCodigo;
 	private String cuestionarioNombre;
 	private float calificacion;
-	private Date  fechaRegistro;
+	private Timestamp  fechaRegistro;
 
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ciber.entities.Bandera;
 import com.ciber.entities.Respuesta;
 import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
@@ -60,9 +59,5 @@ public class RespuestaRestController {
 		return service.registrarRespuestaTrivia(respuesta);
 	}
 	
-	@PostMapping(path = "registrar-bandera")
-	public int registrarBandera(@RequestBody Bandera bandera) {
-		return service.registrarBandera(bandera);
-	}
 
 }

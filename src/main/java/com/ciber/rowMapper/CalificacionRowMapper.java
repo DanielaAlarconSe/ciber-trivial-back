@@ -20,7 +20,7 @@ public class CalificacionRowMapper implements RowMapper<Calificacion>{
 		calificacion.setCuestionarioCodigo(rs.getInt("cue_codigo"));
 		calificacion.setCuestionarioNombre(rs.getString("cue_nombre"));
 		calificacion.setCalificacion(rs.getFloat("rec_calificacion_total"));
-		calificacion.setFechaRegistro(rs.getDate("rec_fecha_registro"));
+		calificacion.setFechaRegistro(rs.getTimestamp("rec_fecha_registro"));
 		
 		return calificacion;
 		

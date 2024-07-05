@@ -33,7 +33,10 @@ public class ResultadosReportesDaoImpl implements IResultadosReportesDao{
 	@Override
 	public float obtenerResultadoTrivia(Integer codigo) {
 		
+		
 		String sql = "select rc.rec_calificacion_total from principal.respuesta_cuestionario rc where rc.rec_codigo = " + codigo + " ;";
+		
+		System.out.println("QUERY:: " +  sql + "RSULTADO:: " + jdbcTemplate.queryForObject(sql, Float.class));
 	    
 	    return jdbcTemplate.queryForObject(sql, Float.class);
 		
