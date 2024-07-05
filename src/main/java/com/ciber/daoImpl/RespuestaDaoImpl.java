@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ciber.dao.IRespuestaDao;
-import com.ciber.entities.Bandera;
 import com.ciber.entities.Respuesta;
 import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
@@ -174,18 +173,20 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 	}
 
 	@Override
-	public int registrarBandera(Bandera bandera) {
+	public int actualizarCalificacion(RespuestaCuestionario respuestaCuestionario) {
 		
-		String sql = "INSERT INTO principal.bandera (ban_estado) VALUES(?);";
+		String sql = "UPDATE principal.respuesta_cuestionario "
+				+ "SET rec_calificacion_total = ? "
+				+ "WHERE rec_codigo = ?;";
 
 		int result = jdbcTemplateEjecucion.update(sql,
-				new Object[] { bandera.getEstado()});
+				new Object[] { respuestaCuestionario.getCalificacionTotal(), respuestaCuestionario.getCodigo()});
 
 		try {
 
 			MapSqlParameterSource parameter = new MapSqlParameterSource();
-			parameter.addValue("1", bandera.getEstado());
-			
+			parameter.addValue("1", respuestaCuestionario.getCalificacionTotal());
+			parameter.addValue("2", respuestaCuestionario.getCodigo());
 
 			return result;
 
@@ -195,7 +196,6 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 			return 0;
 
 		}
-		
 	}
 
 }

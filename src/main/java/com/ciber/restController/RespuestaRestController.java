@@ -59,5 +59,10 @@ public class RespuestaRestController {
 		return service.registrarRespuestaTrivia(respuesta);
 	}
 	
+	@PostMapping(path = "actualizar-calificacion")
+	public int actualizarCalificacion(@RequestBody RespuestaCuestionario respuestaCuestionario) {
+		return service.actualizarCalificacion(respuestaCuestionario);
+	}
+	
 
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ciber.dao.IRespuestaDao;
-import com.ciber.entities.Bandera;
 import com.ciber.entities.Respuesta;
 import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
@@ -69,9 +68,9 @@ public class RespuestaServiceImpl implements IRespuestaService{
 	}
 
 	@Override
-	public int registrarBandera(Bandera bandera) {
+	public int actualizarCalificacion(RespuestaCuestionario respuestaCuestionario) {
 		
-		return respuestaDao.registrarBandera(bandera);
+		return respuestaDao.actualizarCalificacion(respuestaCuestionario);
 		
 	}
 

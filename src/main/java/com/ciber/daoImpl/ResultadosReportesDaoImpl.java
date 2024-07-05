@@ -33,10 +33,7 @@ public class ResultadosReportesDaoImpl implements IResultadosReportesDao{
 	@Override
 	public float obtenerResultadoTrivia(Integer codigo) {
 		
-		
 		String sql = "select rc.rec_calificacion_total from principal.respuesta_cuestionario rc where rc.rec_codigo = " + codigo + " ;";
-		
-		System.out.println("QUERY:: " +  sql + "RSULTADO:: " + jdbcTemplate.queryForObject(sql, Float.class));
 	    
 	    return jdbcTemplate.queryForObject(sql, Float.class);
 		
@@ -103,7 +100,7 @@ public class ResultadosReportesDaoImpl implements IResultadosReportesDao{
             public ReporteAgrupadoDto mapRow(ResultSet rs, int rowNum) throws SQLException {
                 ReporteAgrupadoDto dto = new ReporteAgrupadoDto();
                 dto.setEstudianteNombre(rs.getString("rec_estudiante_nombre"));
-                dto.setFechaRegistro(rs.getDate("rec_fecha_registro"));
+                dto.setFechaRegistro(rs.getTimestamp("rec_fecha_registro"));
                 dto.setCalificacion(rs.getFloat("rec_calificacion_total"));
 
                 Map<String, String> columnas = new HashMap<>();

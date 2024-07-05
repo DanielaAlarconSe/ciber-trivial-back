@@ -16,7 +16,7 @@ public class RespuestaCuestionarioRowMapper implements RowMapper<RespuestaCuesti
 		respuestaCuestionario.setEstudianteNombre(rs.getString("rec_estudiante_nombre"));
 		respuestaCuestionario.setCuestionarioCodigo(rs.getInt("cue_codigo"));
 		respuestaCuestionario.setFechaRegistro(rs.getDate("rec_fecha_registro"));
-		respuestaCuestionario.setCalificacionTotal(rs.getInt("rec_calificacion_total"));
+		respuestaCuestionario.setCalificacionTotal(rs.getFloat("rec_calificacion_total"));
 		return respuestaCuestionario;
 	}
 }

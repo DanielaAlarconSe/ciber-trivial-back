@@ -13,6 +13,6 @@ public class RespuestaCuestionario {
 	private String estudianteNombre;
 	private int cuestionarioCodigo;
 	private Date fechaRegistro; 
-	private int calificacionTotal;
+	private float calificacionTotal;
 
 }
