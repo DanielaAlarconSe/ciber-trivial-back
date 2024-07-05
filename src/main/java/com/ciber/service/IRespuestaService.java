@@ -2,6 +2,7 @@ package com.ciber.service;
 
 import java.util.List;
 
+import com.ciber.entities.Bandera;
 import com.ciber.entities.Respuesta;
 import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
@@ -22,5 +23,7 @@ public interface IRespuestaService {
 	public int registrarRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario);
 	
 	public int registrarRespuestaTrivia(Respuesta respuesta);
+	
+	public int registrarBandera(Bandera bandera);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ciber.dao.IRespuestaDao;
+import com.ciber.entities.Bandera;
 import com.ciber.entities.Respuesta;
 import com.ciber.entities.RespuestaCuestionario;
 import com.ciber.entities.RespuestaOpcion;
@@ -119,11 +120,11 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 	public int registrarRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario) {
 		
 		String sql = "INSERT INTO principal.respuesta_cuestionario "
-				+ "(rec_estudiante_nombre, cue_codigo, rec_calificacion_total) "
-				+ "VALUES(?, ?, ?);";
+				+ "(rec_estudiante_nombre, cue_codigo, rec_calificacion_total, rec_total_preguntas) "
+				+ "VALUES(?, ?, ?, (SELECT COUNT(*) FROM principal.pregunta WHERE cue_codigo = ? and pre_estado = 1));";
 
 		int result = jdbcTemplateEjecucion.update(sql,
-				new Object[] { respuestaCuestionario.getEstudianteNombre(), respuestaCuestionario.getCuestionarioCodigo(), respuestaCuestionario.getCalificacionTotal()});
+				new Object[] { respuestaCuestionario.getEstudianteNombre(), respuestaCuestionario.getCuestionarioCodigo(), respuestaCuestionario.getCalificacionTotal(), respuestaCuestionario.getCuestionarioCodigo()});
 
 		try {
 
@@ -131,6 +132,7 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 			parameter.addValue("1", respuestaCuestionario.getEstudianteNombre());
 			parameter.addValue("2", respuestaCuestionario.getCuestionarioCodigo());
 			parameter.addValue("3", respuestaCuestionario.getCalificacionTotal());
+			parameter.addValue("4", respuestaCuestionario.getCuestionarioCodigo());
 
 			return result;
 
@@ -159,6 +161,31 @@ public class RespuestaDaoImpl implements IRespuestaDao{
 			parameter.addValue("1", respuesta.getRespuestaCuestionarioCodigo());
 			parameter.addValue("2", respuesta.getPreguntaRespuestaCodigo());
 			parameter.addValue("3", respuesta.getPreguntaCodigo());
+
+			return result;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return 0;
+
+		}
+		
+	}
+
+	@Override
+	public int registrarBandera(Bandera bandera) {
+		
+		String sql = "INSERT INTO principal.bandera (ban_estado) VALUES(?);";
+
+		int result = jdbcTemplateEjecucion.update(sql,
+				new Object[] { bandera.getEstado()});
+
+		try {
+
+			MapSqlParameterSource parameter = new MapSqlParameterSource();
+			parameter.addValue("1", bandera.getEstado());
+			
 
 			return result;
 
